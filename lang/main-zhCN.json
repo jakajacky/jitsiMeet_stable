@@ -110,6 +110,7 @@
         "tryAgainButton": "请尝试重启桌面版应用程序"
     },
     "defaultLink": "例如 {{url}}",
+	"defaultNickname": "输入昵称",
     "deviceError": {
         "cameraError": "无法访问您的摄像头",
         "cameraPermission": "无法获得摄像头访问权限",
