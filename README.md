@@ -1,4 +1,5 @@
-# Jitsi Meet - Secure, Simple and Scalable Video Conferences
+# Uvido meeting
+根据 tag:jitsi-meet/stable-3936 本地化而来
 
 Jitsi Meet is an open-source (Apache) WebRTC JavaScript application that uses [Jitsi Videobridge](https://jitsi.org/videobridge) to provide high quality, [secure](#security) and scalable video conferences. Jitsi Meet in action can be seen at [here at the session #482 of the VoIP Users Conference](http://youtu.be/7vFUVClsNh0).
 
