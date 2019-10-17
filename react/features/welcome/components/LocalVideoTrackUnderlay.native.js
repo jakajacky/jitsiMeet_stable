@@ -52,6 +52,7 @@ class LocalVideoTrackUnderlay extends Component<Props> {
                     styles.localVideoTrackUnderlay,
                     this.props.style
                 ] }>
+                {/* 主页面背景镜头 */}
                 <VideoTrack videoTrack = { this.props._localVideoTrack } />
                 <TintedView>
                     { this.props.children }

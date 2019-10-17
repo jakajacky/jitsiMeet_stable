@@ -1,6 +1,7 @@
 // @flow
 
 import { BoxModel, ColorPalette } from '../../../styles';
+import { removeGlobalTransport } from 'jitsi-meet-logger/lib/Logger';
 
 const OVERLAY_FONT_COLOR = 'rgba(255, 255, 255, 0.6)';
 const SECONDARY_ACTION_BUTTON_SIZE = 30;
@@ -44,7 +45,8 @@ const PAGED_LIST_STYLES = {
         alignItems: 'center',
         backgroundColor: ColorPalette.blue,
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        opacity: 0, // 隐藏Tab栏
     },
 
     pageIndicatorContent: {
@@ -88,6 +90,10 @@ const PAGED_LIST_STYLES = {
      */
     pagedListContainerDisabled: {
         opacity: 0.2
+    },
+
+    pagedListContainerBack: {
+        backgroundColor: 'rgba(0, 0, 0, 0.75)'
     }
 };
 

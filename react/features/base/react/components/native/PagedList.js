@@ -97,7 +97,8 @@ class PagedList extends Component<Props, State> {
             <View
                 style = { [
                     styles.pagedListContainer,
-                    disabled ? styles.pagedListContainerDisabled : null
+                    disabled ? styles.pagedListContainerDisabled : null,
+                    styles.pagedListContainerBack,
                 ] }>
                 {
                     pages.length > 1
@@ -245,6 +246,7 @@ class PagedList extends Component<Props, State> {
         }
 
         return (
+            // Tab栏
             <TouchableOpacity
                 disabled = { disabled }
                 key = { index }

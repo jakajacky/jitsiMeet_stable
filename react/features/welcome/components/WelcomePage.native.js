@@ -6,8 +6,20 @@ import {
     TextInput,
     TouchableHighlight,
     TouchableOpacity,
-    View
+    View,
+    Button,
+    Image,
+    StyleSheet,
+    Dimensions,
+    LayoutAnimation
 } from 'react-native';
+import { Button as GButton, GooglePlayButton } from "@freakycoder/react-native-button";
+import GradientButton from "./GradientButton"
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Home from './Home'
+import LoginView from './LoginView'
+import JoinView from './JoinView'
 
 import { getName } from '../../app';
 
@@ -43,6 +55,12 @@ import WelcomePageSideBar from './WelcomePageSideBar';
  * @extends AbstractWelcomePage
  */
 class WelcomePage extends AbstractWelcomePage {
+    state = {
+        left: false,
+        login_left: false,
+        start_left: "100%",
+        join_left: false,
+    };
     /**
      * Constructor of the Component.
      *
@@ -63,6 +81,48 @@ class WelcomePage extends AbstractWelcomePage {
         this._onFieldBlur = this._onFieldFocusChange.bind(this, false);
         this._onFieldFocus = this._onFieldFocusChange.bind(this, true);
     }
+
+    /**
+     * Navigator 导航栏
+     */
+
+    /**
+     * 登录页面 Push&Pop
+     */
+    _pushToLogin = () => {
+        LayoutAnimation.spring();
+        this.setState({left: true})
+        this.setState({login_left: true})
+    }
+    _popFromLogin = () => {
+        LayoutAnimation.spring();
+        this.setState({left: false})
+        this.setState({login_left: false})
+    }
+    
+    /**
+     * 发起会议页面 Push&Pop
+     */
+    _pushToStart = (animationStatus) => {
+        LayoutAnimation.spring();
+        this.setState({left: true})
+        this.setState({start_left: 0})
+    }
+
+    /**
+     * 加入会议页面 Push&Pop
+     */
+    _pushToJoin = (animationStatus) => {
+        LayoutAnimation.spring();
+        this.setState({left: true})
+        this.setState({join_left: true})
+    }
+    _popFromJoin = () => {
+        LayoutAnimation.spring();
+        this.setState({left: false})
+        this.setState({join_left: false})
+    }
+
 
     /**
      * Implements React's {@link Component#componentDidMount()}. Invoked
@@ -258,15 +318,17 @@ class WelcomePage extends AbstractWelcomePage {
         return (
             <LocalVideoTrackUnderlay style = { styles.welcomePage }>
                 <View style = { _headerStyles.page }>
-                    <Header style = { styles.header }>
+                    {/* 导航栏 */}
+                    {/* <Header style = { styles.header }>
                         <TouchableOpacity onPress = { this._onShowSideBar } >
                             <Icon
                                 src = { IconMenu }
                                 style = { _headerStyles.headerButtonIcon } />
                         </TouchableOpacity>
                         <VideoSwitch />
-                    </Header>
-                    <SafeAreaView style = { styles.roomContainer } >
+                    </Header> */}
+                    {/* 输入房间 */}
+                    {/* <SafeAreaView style = { styles.roomContainer } >
                         <View style = { styles.joinControls } >
                             <TextInput
                                 accessibilityLabel = { t(roomnameAccLabel) }
@@ -290,11 +352,30 @@ class WelcomePage extends AbstractWelcomePage {
                                 this._renderHintBox()
                             }
                         </View>
-                    </SafeAreaView>
-                    <WelcomePageLists disabled = { this.state._fieldFocused } />
-                    <SettingsView />
-                    <DialInSummary />
+                    </SafeAreaView> */}
+                    {/* 会议列表 */}
+                    {/* <WelcomePageLists disabled = { this.state._fieldFocused } /> */}
+                    {/* 设置页面 */}
+                    {/* <SettingsView />
+                    <DialInSummary /> */}
+                    <Home
+                    animationStart={ this.state.left }
+                    pushToLogin={this._pushToLogin}
+                    pushToJoin={this._pushToJoin}
+                    ></Home>
+                    {/* 模拟 模态推出页面 */}
+                    {/* 登录页 */}
+                    <LoginView 
+                    animationStart={ this.state.login_left }
+                    animationChanged={ this._popFromLogin }
+                    ></LoginView>
+                    {/* 加入会议页 */}
+                    <JoinView
+                    animationStart={ this.state.join_left }
+                    animationChanged={ this._popFromJoin }
+                    ></JoinView>
                 </View>
+                {/* 侧滑页面 */}
                 <WelcomePageSideBar />
             </LocalVideoTrackUnderlay>
         );
@@ -334,3 +415,48 @@ function _mapStateToProps(state) {
 }
 
 export default translate(connect(_mapStateToProps)(WelcomePage));
+
+const styless = StyleSheet.create({
+    titleText: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 40,
+    },
+    contentText: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 17,
+        marginTop: 8
+    },
+    titleView: {
+        backgroundColor: "rgba(0,0,0,0)",
+        position: "absolute",
+        width: "100%",
+        height: "100%"
+    },
+    naviView: {
+        backgroundColor: "red",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        opacity: 0
+    },
+    containerTopView: {
+        marginTop: 108,
+        marginLeft: 30,
+    },
+    containerBottomView: {
+        marginLeft: 30,
+        marginRight: 30,
+        height: '35%',
+        position: "absolute",
+        bottom: 0,
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+    },
+    buttonView: {
+        fontSize: 12,
+        fontWeight: "bold"
+    }
+})
