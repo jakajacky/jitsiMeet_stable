@@ -104,9 +104,8 @@ class WelcomePage extends AbstractWelcomePage {
      * 发起会议页面 Push&Pop
      */
     _pushToStart = (animationStatus) => {
-        LayoutAnimation.spring();
-        this.setState({left: true})
-        this.setState({start_left: 0})
+        this.state.room = '18515982821'
+        this._onJoin()
     }
 
     /**
@@ -362,6 +361,7 @@ class WelcomePage extends AbstractWelcomePage {
                     animationStart={ this.state.left }
                     pushToLogin={this._pushToLogin}
                     pushToJoin={this._pushToJoin}
+                    pushToStart={this._pushToStart}
                     ></Home>
                     {/* 模拟 模态推出页面 */}
                     {/* 登录页 */}

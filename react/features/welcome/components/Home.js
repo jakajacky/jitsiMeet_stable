@@ -19,7 +19,7 @@ import { Icon } from '../../base/icons';
 
 class Home extends React.Component {
     render() {
-        const {animationStart, pushToJoin, pushToLogin} = this.props
+        const {animationStart, pushToJoin, pushToLogin, pushToStart} = this.props
         return (
             <View style = { [
                 styless.titleView,
@@ -46,7 +46,7 @@ class Home extends React.Component {
                     radius={ 22 }
                     width={ Dimensions.get('window').width - 60 }
                     height={ 44 }
-                    onClick={ this._pushToStart }
+                    onClick={ pushToStart }
                     ></GradientButton>
                     <View
                     style={{height:16}}
