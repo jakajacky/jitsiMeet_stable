@@ -158,9 +158,11 @@ const styless = StyleSheet.create({
         marginLeft: 30,
     },
     containerMiddleView: {
-        marginTop: 79,
         marginLeft: 30,
         marginRight: 30,
+        position: "absolute",
+        bottom: "50%",
+        paddingBottom: 40,
     },
     containerBottomView: {
         marginLeft: 30,
