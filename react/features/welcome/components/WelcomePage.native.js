@@ -15,8 +15,8 @@ import {
 } from 'react-native';
 import { Button as GButton, GooglePlayButton } from "@freakycoder/react-native-button";
 import GradientButton from "./GradientButton"
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+// import { createAppContainer } from 'react-navigation';
+// import { createStackNavigator } from 'react-navigation-stack';
 import Home from './Home'
 import LoginView from './LoginView'
 import JoinView from './JoinView'
