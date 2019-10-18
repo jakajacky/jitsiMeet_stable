@@ -106,7 +106,10 @@ class WelcomePage extends AbstractWelcomePage {
      * 发起会议页面 Push&Pop
      */
     _pushToStart = (animationStatus) => {
-        this.state.room = '18515982821'
+        const millitimestamp = new Date().getTime()
+
+        const timestamp = parseInt(millitimestamp / 1000)
+        this.state.room = (timestamp%100000) + ''
         this._onJoin()
     }
 
