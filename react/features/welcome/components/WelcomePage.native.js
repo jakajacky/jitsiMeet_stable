@@ -66,9 +66,11 @@ class WelcomePage extends AbstractWelcomePage {
      *
      * @inheritdoc
      */
+    let
+    that;
     constructor(props) {
         super(props);
-
+        that = this
         this.state._fieldFocused = false;
         this.state.hintBoxAnimation = new Animated.Value(0);
 
@@ -104,9 +106,11 @@ class WelcomePage extends AbstractWelcomePage {
      * 发起会议页面 Push&Pop
      */
     _pushToStart = (animationStatus) => {
-        LayoutAnimation.spring();
-        this.setState({left: true})
-        this.setState({start_left: 0})
+        const millitimestamp = new Date().getTime()
+
+        const timestamp = parseInt(millitimestamp / 1000)
+        this.state.room = (timestamp%100000) + ''
+        this._onJoin()
     }
 
     /**
@@ -121,6 +125,11 @@ class WelcomePage extends AbstractWelcomePage {
         LayoutAnimation.spring();
         this.setState({left: false})
         this.setState({join_left: false})
+    }
+    // 根据room加入一个会议
+    _didJoinedEventRoom(room, displayName) {
+        that.state.room = room
+        that._onJoin()
     }
 
 
@@ -362,6 +371,7 @@ class WelcomePage extends AbstractWelcomePage {
                     animationStart={ this.state.left }
                     pushToLogin={this._pushToLogin}
                     pushToJoin={this._pushToJoin}
+                    pushToStart={this._pushToStart}
                     ></Home>
                     {/* 模拟 模态推出页面 */}
                     {/* 登录页 */}
@@ -373,6 +383,7 @@ class WelcomePage extends AbstractWelcomePage {
                     <JoinView
                     animationStart={ this.state.join_left }
                     animationChanged={ this._popFromJoin }
+                    didJoinedEventRoom={ this._didJoinedEventRoom }
                     ></JoinView>
                 </View>
                 {/* 侧滑页面 */}

@@ -20,8 +20,8 @@ import { GooglePlayButton } from '@freakycoder/react-native-button';
 
 class LoginView extends React.Component {
     state = {
-        Phone: String,
-        Code: String,
+        Phone: '',
+        Code: '',
     };
 
     constructor(props) {
@@ -93,7 +93,7 @@ class LoginView extends React.Component {
                         textColor={ "white" }
                         borderWidth={1}
                         borderRadius={22}
-                        width={ "40%" }
+                        width={ Dimensions.get('window').width * 0.4 }
                         height={ 42 }
                         ></GooglePlayButton>
                     </View>
