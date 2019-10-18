@@ -66,9 +66,11 @@ class WelcomePage extends AbstractWelcomePage {
      *
      * @inheritdoc
      */
+    let
+    that;
     constructor(props) {
         super(props);
-
+        that = this
         this.state._fieldFocused = false;
         this.state.hintBoxAnimation = new Animated.Value(0);
 
@@ -120,6 +122,11 @@ class WelcomePage extends AbstractWelcomePage {
         LayoutAnimation.spring();
         this.setState({left: false})
         this.setState({join_left: false})
+    }
+    // 根据room加入一个会议
+    _didJoinedEventRoom(room, displayName) {
+        that.state.room = room
+        that._onJoin()
     }
 
 
@@ -373,6 +380,7 @@ class WelcomePage extends AbstractWelcomePage {
                     <JoinView
                     animationStart={ this.state.join_left }
                     animationChanged={ this._popFromJoin }
+                    didJoinedEventRoom={ this._didJoinedEventRoom }
                     ></JoinView>
                 </View>
                 {/* 侧滑页面 */}

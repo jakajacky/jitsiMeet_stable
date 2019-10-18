@@ -21,8 +21,8 @@ import { GooglePlayButton } from '@freakycoder/react-native-button';
 class JoinView extends React.Component {
 
     state = {
-        EventNumber: String,
-        DisplayName: String,
+        EventNumber:'',
+        DisplayName:''
     }
 
     constructor(props) {
@@ -32,12 +32,18 @@ class JoinView extends React.Component {
     /**
      * 输入框内容发生变化
      */
-    onChangeText(text) {
+    onChangeEventNumber(text) {
         console.log(text);
+        this.setState({EventNumber: text});
+    }
+    onChangeDisplayName(text) {
+        console.log(text);
+        this.setState({DisplayName: text});
     }
 
     render() {
-        const {animationStart, animationChanged} = this.props
+        const {animationStart, animationChanged, didJoinedEventRoom} = this.props
+        const that = this
         return (
             <View style = { [
                 styless.naviView,
@@ -70,7 +76,7 @@ class JoinView extends React.Component {
                     style={ styless.cTextInputBackground }>
                         <TextInput
                         style={ styless.cTextInput }
-                        onChangeText={text => this.onChangeText(text)}
+                        onChangeText={text => this.onChangeEventNumber(text)}
                         placeholder={ "输入会议号" }
                         placeholderTextColor="rgba(255, 255, 255, 0.64)"
                         value={this.state.EventNumber}
@@ -81,7 +87,7 @@ class JoinView extends React.Component {
                         style={ [styless.cTextInputBackground, {marginTop: 0, width: "100%"}] }>
                             <TextInput
                             style={ [styless.cTextInput] }
-                            onChangeText={text => this.onChangeText(text)}
+                            onChangeText={text => this.onChangeDisplayName(text)}
                             placeholder={ "输入昵称" }
                             placeholderTextColor="rgba(255, 255, 255, 0.64)"
                             value={this.state.DisplayName}
@@ -99,9 +105,9 @@ class JoinView extends React.Component {
                     radius={ 22 }
                     width={ Dimensions.get('window').width - 60 }
                     height={ 44 }
-                    onClick={ function () {
-                        alert('加入会议')
-                    } }
+                    onClick={() => {
+                        didJoinedEventRoom(that.state.EventNumber, that.state.DisplayName)
+                    }}
                     ></GradientButton>
                     
                     <Text
