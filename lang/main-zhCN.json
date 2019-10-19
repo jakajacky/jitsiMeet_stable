@@ -703,6 +703,17 @@
         "roomnameHint": "请输入您想加入房间的 URL 地址或者房间名。您也可以想个房名创建房间，只要其他人输入和您一样的名称就能加入您的房间。",
         "sendFeedback": "发送反馈",
         "terms": "条款",
-        "title": "安全，功能完善和完全开源的视频会议"
+        "title": "安全，功能完善和完全开源的视频会议",
+        "login": "登录",
+        "login_tip": "视频在线通话系统",
+        "phone": "手机号",
+        "code": "验证码",
+        "getcode": "获取验证码",
+        "joinMeet": "加入会议",
+        "enterMeetId": "输入会议号",
+        "enterDisplayName": "输入昵称",
+        "startMeet": "发起会议",
+        "Uvido": "百视云",
+        "Umeet": "云会"
     }
 }

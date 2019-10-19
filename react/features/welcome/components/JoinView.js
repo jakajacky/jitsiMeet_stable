@@ -17,6 +17,7 @@ import { Header, LoadingIndicator, Text } from '../../base/react';
 import GradientButton from "./GradientButton"
 import { Icon } from '../../base/icons';
 import { GooglePlayButton } from '@freakycoder/react-native-button';
+import { translate } from '../../base/i18n';
 
 class JoinView extends React.Component {
 
@@ -42,7 +43,7 @@ class JoinView extends React.Component {
     }
 
     render() {
-        const {animationStart, animationChanged, didJoinedEventRoom} = this.props
+        const {animationStart, animationChanged, didJoinedEventRoom, t} = this.props
         const that = this
         return (
             <View style = { [
@@ -64,10 +65,10 @@ class JoinView extends React.Component {
                     styless.containerTopView
                 }>
                     <Text style={ styless.titleText }>
-                        { "加入会议" }
+                        { t('welcomepage.joinMeet') }
                     </Text>
                     <Text style={ styless.contentText }>
-                        { "视频在线通话系统" }
+                        { t('welcomepage.login_tip') }
                     </Text>
                 </View>
 
@@ -77,7 +78,7 @@ class JoinView extends React.Component {
                         <TextInput
                         style={ styless.cTextInput }
                         onChangeText={text => this.onChangeEventNumber(text)}
-                        placeholder={ "输入会议号" }
+                        placeholder={ t('welcomepage.enterMeetId') }
                         placeholderTextColor="rgba(255, 255, 255, 0.64)"
                         value={this.state.EventNumber}
                         />
@@ -88,7 +89,7 @@ class JoinView extends React.Component {
                             <TextInput
                             style={ [styless.cTextInput] }
                             onChangeText={text => this.onChangeDisplayName(text)}
-                            placeholder={ "输入昵称" }
+                            placeholder={ t('welcomepage.enterDisplayName') }
                             placeholderTextColor="rgba(255, 255, 255, 0.64)"
                             value={this.state.DisplayName}
                             />
@@ -99,7 +100,7 @@ class JoinView extends React.Component {
                 <View style={styless.containerBottomView}>
                     
                     <GradientButton
-                    text="加入会议"
+                    text={t('welcomepage.joinMeet')}
                     textColor="#fff"
                     fontSize={ 15 }
                     radius={ 22 }
@@ -113,7 +114,7 @@ class JoinView extends React.Component {
                     <Text
                     style={{position:"absolute",bottom:40,color:"rgba(78, 88, 110, 1)",fontSize:12}}
                     >
-                    {'All right reserved by 百视云'}
+                    {'All right reserved by '+t('welcomepage.Uvido')}
                     </Text>
                 </View>
             </View>   
@@ -121,7 +122,7 @@ class JoinView extends React.Component {
     }
 }
 
-export default JoinView
+export default translate(JoinView)
 
 const styless = StyleSheet.create({
     titleText: {

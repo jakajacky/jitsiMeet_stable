@@ -16,10 +16,11 @@ import {
 import { Header, LoadingIndicator, Text } from '../../base/react';
 import GradientButton from "./GradientButton"
 import { Icon } from '../../base/icons';
+import { translate } from '../../base/i18n';
 
 class Home extends React.Component {
     render() {
-        const {animationStart, pushToJoin, pushToLogin, pushToStart} = this.props
+        const {animationStart, pushToJoin, pushToLogin, pushToStart, t} = this.props
         return (
             <View style = { [
                 styless.titleView,
@@ -29,16 +30,16 @@ class Home extends React.Component {
                     styless.containerTopView
                 }>
                     <Text style={ styless.titleText }>
-                        { "云会" }
+                        { t('welcomepage.Umeet') }
                     </Text>
                     <Text style={ styless.contentText }>
-                        { "视频在线通话系统" }
+                        { t('welcomepage.login_tip') }
                     </Text>
                 </View>
 
                 <View style={styless.containerBottomView}>
                     <GradientButton
-                    text="发起会议"
+                    text={t('welcomepage.startMeet')}
                     textColor="rgba(6, 99, 163, 1)"
                     fontSize={ 15 }
                     gradientBegin="white"
@@ -52,7 +53,7 @@ class Home extends React.Component {
                     style={{height:16}}
                     ></View>
                     <GradientButton
-                    text="加入会议"
+                    text={t('welcomepage.joinMeet')}
                     textColor="#fff"
                     fontSize={ 15 }
                     radius={ 22 }
@@ -64,7 +65,7 @@ class Home extends React.Component {
                     style={{height:16}}
                     ></View>
                     <GradientButton
-                    text="登录"
+                    text={t('welcomepage.login')}
                     fontSize={ 14 }
                     textColor="#fff"
                     gradientBegin="rgba(255,255,255,0)"
@@ -76,7 +77,7 @@ class Home extends React.Component {
                     <Text
                     style={{position:"absolute",bottom:40,color:"rgba(78, 88, 110, 1)",fontSize:12}}
                     >
-                    {'All right reserved by 百视云'}
+                    {'All right reserved by '+t('welcomepage.Uvido')}
                     </Text>
                 </View>
             </View>
@@ -84,7 +85,7 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default translate(Home)
 
 const styless = StyleSheet.create({
     titleText: {

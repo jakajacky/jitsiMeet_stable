@@ -17,6 +17,7 @@ import { Header, LoadingIndicator, Text } from '../../base/react';
 import GradientButton from "./GradientButton"
 import { Icon } from '../../base/icons';
 import { GooglePlayButton } from '@freakycoder/react-native-button';
+import { translate } from '../../base/i18n';
 
 class LoginView extends React.Component {
     state = {
@@ -36,7 +37,7 @@ class LoginView extends React.Component {
     }
 
     render() {
-        const {animationStart, animationChanged} = this.props
+        const {animationStart, animationChanged, t} = this.props
         return (
             <View style = { [
                 styless.naviView,
@@ -57,10 +58,10 @@ class LoginView extends React.Component {
                     styless.containerTopView
                 }>
                     <Text style={ styless.titleText }>
-                        { "登录" }
+                        { t('welcomepage.login') }
                     </Text>
                     <Text style={ styless.contentText }>
-                        { "视频在线通话系统" }
+                        { t('welcomepage.login_tip') }
                     </Text>
                 </View>
 
@@ -70,7 +71,7 @@ class LoginView extends React.Component {
                         <TextInput
                         style={ styless.cTextInput }
                         onChangeText={text => this.onChangeText(text)}
-                        placeholder={ "手机号" }
+                        placeholder={ t('welcomepage.phone') }
                         placeholderTextColor="rgba(255, 255, 255, 0.64)"
                         value={this.state.Phone}
                         />
@@ -81,19 +82,19 @@ class LoginView extends React.Component {
                             <TextInput
                             style={ [styless.cTextInput] }
                             onChangeText={text => this.onChangeText(text)}
-                            placeholder={ "验证码" }
+                            placeholder={ t('welcomepage.code') }
                             placeholderTextColor="rgba(255, 255, 255, 0.64)"
                             value={this.state.Code}
                             />
                         </View>
                         <GooglePlayButton
                         outline
-                        text="获取验证码"
+                        text={ t('welcomepage.getcode') }
                         textStyle
                         textColor={ "white" }
                         borderWidth={1}
                         borderRadius={22}
-                        width={ Dimensions.get('window').width * 0.4 }
+                        width={ (Dimensions.get('window').width-60) * 0.4 }
                         height={ 42 }
                         ></GooglePlayButton>
                     </View>
@@ -103,7 +104,7 @@ class LoginView extends React.Component {
 
                     
                     <GradientButton
-                    text="登录"
+                    text={ t('welcomepage.login') }
                     textColor="#fff"
                     fontSize={ 15 }
                     radius={ 22 }
@@ -117,7 +118,7 @@ class LoginView extends React.Component {
                     <Text
                     style={{position:"absolute",bottom:40,color:"rgba(78, 88, 110, 1)",fontSize:12}}
                     >
-                    {'All right reserved by 百视云'}
+                    {'All right reserved by '+t('welcomepage.Uvido')}
                     </Text>
                 </View>
             </View>   
@@ -125,7 +126,7 @@ class LoginView extends React.Component {
     }
 }
 
-export default LoginView
+export default translate(LoginView)
 
 const styless = StyleSheet.create({
     titleText: {
@@ -187,6 +188,7 @@ const styless = StyleSheet.create({
     cTextInputBackground: {
         backgroundColor: 'rgba(255, 255, 255, 0.2)', 
         borderRadius: 22, 
+        width: Dimensions.get('window').width - 60
     },
     cTextInput: {
         height: 44, 
